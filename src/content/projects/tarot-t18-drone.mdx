@@ -1,0 +1,82 @@
+---
+title: "Tarot T18 Octocopter for Water Sampling"
+description: "Building a heavy-lift UAV platform for autonomous water sampling in maritime research environments"
+category: "UAV Development"
+status: "ongoing"
+duration: "September 2024 - Present"
+role: "Lead Developer"
+institution: "NTNU IIR Automation Lab"
+image: "/images/projects/tarot-t18-thumb.jpg"
+technologies: ["ROS2", "Pixhawk", "Jetson Orin Nano", "MAVLink", "Pozyx UWB", "Python"]
+featured: true
+---
+
+## Overview
+
+The Tarot T18 project focuses on developing a robust octocopter platform capable of autonomous water sampling operations in fjord environments. This heavy-lift drone is designed to replace GPS with Pozyx UWB for precise indoor/GPS-denied positioning.
+
+## Problem Statement
+
+Traditional water sampling in Norwegian fjords requires boats and significant logistics. An autonomous aerial platform can:
+- Reduce sampling time from hours to minutes
+- Access difficult-to-reach locations
+- Provide repeatable, georeferenced sampling points
+
+## System Architecture
+
+The system consists of several integrated components working together:
+
+### Hardware Components
+
+| Component | Specification | Purpose |
+|-----------|--------------|---------|
+| Frame | Tarot T18 Octocopter | Heavy-lift platform |
+| Flight Controller | Pixhawk 4 | Flight management |
+| Companion Computer | Jetson Orin Nano | Mission logic & sensors |
+| Positioning | Pozyx UWB | GPS-denied navigation |
+| Pump | Peristaltic pump | Water sample collection |
+
+### Software Stack
+
+- **ROS2 Humble** - Robot Operating System for inter-process communication
+- **PX4 Autopilot** - Flight control firmware
+- **MAVLink** - Drone communication protocol
+- **Python 3.10** - Mission logic and sensor integration
+
+## Technical Challenges
+
+### Challenge 1: GPIO Voltage Issues
+
+**Problem**: Jetson Orin Nano GPIO pins outputting 0V instead of expected 3.3V
+
+**Solution**: Configured pinmux using Jetson-IO tool to properly enable GPIO functionality
+
+**Outcome**: Achieved reliable 3.3V output for pump control circuitry
+
+### Challenge 2: Indoor Positioning
+
+**Problem**: GPS unavailable in indoor test environments
+
+**Solution**: Integrating Pozyx UWB system with Pixhawk via MAVLink position messages
+
+**Status**: Currently configuring tag-anchor communication protocols
+
+## Current Progress
+
+- [x] Frame assembly and motor mounting
+- [x] Flight controller configuration
+- [x] Jetson Orin Nano integration
+- [x] Basic MAVLink communication
+- [ ] Pozyx UWB positioning (in progress)
+- [ ] Peristaltic pump control system
+- [ ] Autonomous mission planning
+- [ ] Field testing
+
+## Next Steps
+
+1. Complete Pozyx UWB configuration and calibration
+2. Integrate pump control via MAVLink auxiliary commands
+3. Develop autonomous sampling mission logic in ROS2
+4. Conduct indoor flight tests at IIR Lab
+5. Plan outdoor field testing at fjord location
+

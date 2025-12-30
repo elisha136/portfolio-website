@@ -1,0 +1,85 @@
+---
+/**
+ * projects/index.astro
+ * All projects listing page with filtering by category/status
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ui/ProjectCard.astro';
+import { projectsData, projectSlugs } from '../../data/projects';
+
+// Transform project data for display
+const allProjects = projectSlugs.map(slug => ({
+  ...projectsData[slug],
+  slug
+}));
+
+// Get unique categories
+const categories = [...new Set(allProjects.map(p => p.category))];
+---
+
+<BaseLayout title="Projects" description="Portfolio of robotics, UAV, and automation projects by Elisha Adiburo Adimalara">
+  <section class="section-padding pt-24">
+    <div class="section-container">
+      <!-- Section Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-6">Projects</h1>
+        <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+          A collection of my work in robotics, autonomous systems, and machine learning. 
+          Each project represents hands-on experience with real engineering challenges.
+        </p>
+      </div>
+
+      <!-- Category Filter (Static for now) -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12">
+        <span class="tech-badge bg-primary-500/20 border-primary-500/50">All</span>
+        {categories.map((category) => (
+          <span class="tech-badge cursor-pointer hover:bg-slate-700 transition-colors">
+            {category}
+          </span>
+        ))}
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {allProjects.map((project, index) => (
+          <div 
+            class="animate-fade-in"
+            style={`animation-delay: ${index * 100}ms`}
+          >
+            <ProjectCard {...project} />
+          </div>
+        ))}
+      </div>
+
+      <!-- No Projects Message (hidden by default) -->
+      <div class="hidden text-center py-12">
+        <p class="text-slate-400">No projects found in this category.</p>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="card text-center">
+          <p class="text-3xl font-bold text-primary-400">{allProjects.length}</p>
+          <p class="text-sm text-slate-400">Total Projects</p>
+        </div>
+        <div class="card text-center">
+          <p class="text-3xl font-bold text-green-400">
+            {allProjects.filter(p => p.status === 'completed').length}
+          </p>
+          <p class="text-sm text-slate-400">Completed</p>
+        </div>
+        <div class="card text-center">
+          <p class="text-3xl font-bold text-amber-400">
+            {allProjects.filter(p => p.status === 'ongoing').length}
+          </p>
+          <p class="text-sm text-slate-400">Ongoing</p>
+        </div>
+        <div class="card text-center">
+          <p class="text-3xl font-bold text-slate-400">{categories.length}</p>
+          <p class="text-sm text-slate-400">Categories</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,200 @@
+---
+/**
+ * about.astro
+ * Detailed about page with professional summary, education, and experience
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Education data
+const education = [
+  {
+    degree: 'MSc Mechatronics and Automation',
+    institution: 'Norwegian University of Science and Technology (NTNU)',
+    location: 'Ålesund, Norway',
+    period: '2024 - 2026 (Expected)',
+    direction: 'Robotics and Intelligent Systems',
+    highlights: [
+      'Focus on autonomous systems and UAV development',
+      'Research at IIR Automation Lab',
+      'Thesis topic: Autonomous Water Sampling UAV'
+    ]
+  },
+  {
+    degree: 'BSc Civil Engineering',
+    institution: 'Kwame Nkrumah University of Science and Technology (KNUST)',
+    location: 'Kumasi, Ghana',
+    period: '2017 - 2021',
+    direction: '',
+    highlights: [
+      'First Class Honours',
+      'Strong foundation in mathematics and physics',
+      'Project management and structural analysis'
+    ]
+  }
+];
+
+// Experience data
+const experience = [
+  {
+    role: 'Student Research Assistant',
+    company: 'IIR Automation Lab, NTNU',
+    period: 'September 2024 - Present',
+    description: 'Contributing to autonomous systems research focusing on UAV development for maritime applications.',
+    responsibilities: [
+      'Building and configuring Tarot T18 octocopter for water sampling',
+      'Integrating Pozyx UWB positioning for GPS-denied navigation',
+      'Developing ROS2-based control systems and MAVLink communication',
+      'Configuring Jetson Orin Nano for onboard processing'
+    ]
+  }
+];
+
+// Languages
+const languages = [
+  { language: 'English', level: 'Professional/Native', proficiency: 100 },
+  { language: 'Norwegian', level: 'A2 (In Progress)', proficiency: 30 },
+  { language: 'German', level: 'Basic', proficiency: 20 }
+];
+---
+
+<BaseLayout title="About" description="Learn more about Elisha Adiburo Adimalara - MSc Mechatronics & Automation student at NTNU Ålesund">
+  <!-- Hero Section -->
+  <section class="section-padding pt-24 bg-gradient-to-b from-slate-900/50 to-slate-950">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl sm:text-5xl font-bold mb-6">About Me</h1>
+        <p class="text-xl text-slate-400 leading-relaxed">
+          Passionate about building intelligent autonomous systems that solve 
+          real-world problems. Currently pursuing my MSc at NTNU Ålesund with 
+          a focus on robotics and UAV development.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Professional Summary -->
+  <section class="section-padding">
+    <div class="section-container">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid lg:grid-cols-5 gap-8 items-start">
+          <!-- Text Content -->
+          <div class="lg:col-span-3">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+              <span class="text-primary-400">01.</span> Professional Summary
+            </h2>
+            <div class="space-y-4 text-slate-300 leading-relaxed">
+              <p>
+                I am a Mechatronics and Automation engineering student with a strong passion
+                for robotics, autonomous systems, and intelligent control. My journey into
+                engineering began with civil engineering, where I developed a solid foundation
+                in mathematics, physics, and project management.
+              </p>
+              <p>
+                Currently at NTNU Ålesund, I specialize in Robotics and Intelligent Systems,
+                working on cutting-edge projects at the IIR Automation Lab. My primary focus
+                is on UAV development for maritime research applications, combining hardware
+                integration, embedded systems, and machine learning.
+              </p>
+              <p>
+                I am actively seeking opportunities in automation, robotics, and control
+                systems engineering where I can apply my skills in autonomous systems
+                development and contribute to innovative solutions.
+              </p>
+            </div>
+          </div>
+          <!-- Photos -->
+          <div class="lg:col-span-2 space-y-4">
+            <div class="relative group">
+              <img
+                src="/images/profile/about-1.jpg"
+                alt="Elisha working on robotics project"
+                class="rounded-xl shadow-lg border border-slate-700/50 w-full object-cover
+                       group-hover:border-primary-500/50 transition-colors duration-300"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+            <div class="relative group">
+              <img
+                src="/images/profile/about-2.jpg"
+                alt="Elisha at NTNU Ålesund"
+                class="rounded-xl shadow-lg border border-slate-700/50 w-full object-cover
+                       group-hover:border-primary-500/50 transition-colors duration-300"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="section-padding bg-slate-900/30">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="text-primary-400">02.</span> Education
+        </h2>
+        <div class="space-y-8">
+          {education.map((edu) => (
+            <div class="card">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-lg font-bold text-white">{edu.degree}</h3>
+                  <p class="text-primary-400 font-medium">{edu.institution}</p>
+                  {edu.direction && (
+                    <p class="text-sm text-slate-400">Direction: {edu.direction}</p>
+                  )}
+                </div>
+                <div class="text-right">
+                  <p class="text-sm text-slate-400">{edu.period}</p>
+                  <p class="text-sm text-slate-500">{edu.location}</p>
+                </div>
+              </div>
+              <ul class="space-y-1 mt-4">
+                {edu.highlights.map((highlight) => (
+                  <li class="text-slate-400 text-sm flex items-start gap-2">
+                    <span class="text-primary-400 mt-1">▸</span>
+                    {highlight}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="section-padding">
+    <div class="section-container">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+          <span class="text-primary-400">03.</span> Experience
+        </h2>
+        {experience.map((exp) => (
+          <div class="card">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
+              <div>
+                <h3 class="text-lg font-bold text-white">{exp.role}</h3>
+                <p class="text-primary-400 font-medium">{exp.company}</p>
+              </div>
+              <p class="text-sm text-slate-400">{exp.period}</p>
+            </div>
+            <p class="text-slate-400 mb-4">{exp.description}</p>
+            <ul class="space-y-1">
+              {exp.responsibilities.map((resp) => (
+                <li class="text-slate-400 text-sm flex items-start gap-2">
+                  <span class="text-primary-400 mt-1">▸</span>
+                  {resp}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

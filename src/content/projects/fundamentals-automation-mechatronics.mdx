@@ -1,0 +1,120 @@
+---
+title: "Fundamentals of Automation and Mechatronics"
+description: "Comprehensive portfolio covering PCB design with NE555 timer circuits, control systems analysis, PLC programming, mechanical engineering calculations, and Python data analysis"
+category: "Mechatronics"
+status: "completed"
+duration: "Fall 2024"
+role: "Developer"
+institution: "NTNU"
+image: "/images/projects/fundamentals-thumb.jpg"
+technologies: ["Autodesk Fusion 360", "PCB Design", "Gerber Files", "PLC Programming", "MATLAB", "Python", "Control Systems"]
+featured: false
+---
+
+## Overview
+
+This AIS4003 Fundamentals of Automation and Mechatronics Engineering portfolio demonstrates foundational skills across the core disciplines of mechatronics: electronics design, mechanical engineering, control systems, industrial automation, and programming.
+
+The portfolio is divided into three main modules with both individual and group work.
+
+## Module I: Mechatronics (Electronics Design)
+
+### PCB Design - NE555 Audio Generator
+
+Designed and manufactured a printed circuit board featuring the NE555 timer IC in astable mode for audio signal generation. The circuit includes:
+
+- **NE555 Timer IC** - Configured as astable oscillator
+- **L7809CV Voltage Regulator** - 9V regulated output
+- **470kΩ Potentiometer** - Frequency adjustment
+- **Audio Output** - 3.5mm stereo jack and miniature speaker
+
+| Component | Value | Purpose |
+|-----------|-------|---------|
+| NE555P | Timer IC | Square wave generation |
+| L7809CV | Regulator | 9V supply regulation |
+| Capacitors | 100µF, 100nF, 10nF | Filtering and timing |
+| Potentiometer | 470kΩ | Frequency control |
+| Resistors | 500Ω, 3kΩ, 4.7kΩ, 10kΩ, 15kΩ | Bias and current limiting |
+
+The design was created in Autodesk Fusion 360, with Gerber and drill files generated for PCB manufacturing. The board was then soldered and tested successfully.
+
+## Module II: Mechanical Engineering
+
+### Robot Arm Design Project
+
+Complete pick-and-place robot arm design including:
+
+- **DH Parameter Tables** - Forward kinematics modeling
+- **Inverse Kinematics** - Position to joint angle conversion
+- **Torque Calculations** - Motor sizing for each joint
+- **Deflection Analysis** - Cantilever beam calculations
+- **Servo Selection** - eRob 80T and 90T servos chosen
+
+Key specifications calculated:
+- Link lengths: L1 = L2 = 400mm
+- Workspace: 400mm × 500mm
+- Joint 1 Torque: 116.56 Nm
+- Joint 2 Torque: 87.44 Nm
+- Total deflection: 0.2mm (within tolerance)
+
+### Mechanical Engineering Exercises
+
+- Stress and strain calculations for robot arm components
+- Mass moment of inertia calculations
+- Gear ratio optimization for servo motors
+- Encoder resolution requirements
+
+## Module III: Automation and Computer Science
+
+### Control Systems Analysis
+
+Derived transfer functions for DC motor model:
+
+The differential equation for the motor system:
+$$J\dot{\omega}_m(t) = -\left(D_m + \frac{K_t K_b}{R_a}\right)\omega_m(t) + \frac{K_t}{R_a}e_a(t)$$
+
+Applied Laplace transform to obtain transfer function relating armature voltage to angular velocity.
+
+### PLC Programming Portfolio
+
+Industrial control systems exercises covering:
+- Ladder logic programming
+- Sequential function charts
+- Industrial automation scenarios
+
+### Python Data Analysis
+
+Weather data analysis using Python with pandas:
+- Temperature analysis from Vigra weather station
+- Rainfall data processing and visualization
+- Wind speed statistics and plotting
+
+```python
+# Sample code structure
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load and process weather data
+df = pd.read_csv('Temperature_vigra.csv')
+# Analysis and visualization...
+```
+
+## Documentation
+
+<a href="/pdfs/AIS4003_Fundamentals_Portfolio.pdf" target="_blank" class="btn">📄 View Complete Portfolio (PDF)</a>
+
+## Key Learnings
+
+1. **PCB Design Workflow** - From schematic to manufactured board
+2. **Mechanical System Analysis** - Stress, deflection, and dynamics
+3. **Control Theory** - Transfer functions and system modeling
+4. **Industrial Automation** - PLC programming fundamentals
+5. **Data Analysis** - Python for engineering applications
+
+## Project Files
+
+- Gerber and drill files for PCB manufacturing
+- Fusion 360 schematic and board files
+- Python scripts for weather analysis
+- Technical reports for all modules
+

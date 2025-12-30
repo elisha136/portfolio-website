@@ -1,0 +1,60 @@
+---
+/**
+ * FeaturedProjects.astro
+ * Section displaying featured/highlighted projects
+ */
+import ProjectCard from '../ui/ProjectCard.astro';
+import { projectsData, projectSlugs } from '../../data/projects';
+
+// Get featured projects from shared data
+const featuredProjects = projectSlugs
+  .filter(slug => projectsData[slug].featured)
+  .map(slug => ({
+    ...projectsData[slug],
+    slug
+  }));
+---
+
+<section id="projects" class="section-padding">
+  <div class="section-container">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Highlights from my work in autonomous systems, robotics, and 
+        machine learning at NTNU's IIR Automation Lab.
+      </p>
+    </div>
+    
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuredProjects.map((project, index) => (
+        <div 
+          class="animate-fade-in"
+          style={`animation-delay: ${index * 150}ms`}
+        >
+          <ProjectCard {...project} />
+        </div>
+      ))}
+    </div>
+    
+    <!-- View All Link -->
+    <div class="text-center mt-12">
+      <a 
+        href="/projects" 
+        class="inline-flex items-center gap-2 text-primary-400 
+               hover:text-primary-300 font-medium group"
+      >
+        View All Projects
+        <svg 
+          class="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

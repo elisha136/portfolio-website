@@ -1,0 +1,37 @@
+---
+/**
+ * index.astro
+ * Home page with Hero, Skills, and Featured Projects
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Skills from '../components/sections/Skills.astro';
+import FeaturedProjects from '../components/sections/FeaturedProjects.astro';
+---
+
+<BaseLayout title="Home">
+  <Hero />
+  <Skills />
+  <FeaturedProjects />
+  
+  <!-- Call to Action -->
+  <section class="section-padding bg-gradient-to-b from-slate-900/50 to-slate-950">
+    <div class="section-container text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-4">
+        Interested in collaboration?
+      </h2>
+      <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+        I'm currently looking for opportunities in automation, robotics, 
+        and control systems engineering. Let's connect!
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact" class="btn-primary">
+          Get in Touch
+        </a>
+        <a href="/projects" class="btn-secondary">
+          View All Projects
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

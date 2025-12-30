@@ -1,0 +1,104 @@
+---
+/**
+ * Skills.astro
+ * Skills section displaying technical competencies grouped by category
+ */
+
+// Define skill categories with icons and skills
+// Update these based on your actual skills
+const skillCategories = [
+  {
+    title: 'Robotics & Drones',
+    icon: '🤖',
+    description: 'Autonomous systems development',
+    skills: ['ROS2', 'PX4', 'MAVLink', 'MAVSDK', 'ArduPilot', 'Pixhawk', 'QGroundControl']
+  },
+  {
+    title: 'Embedded Systems',
+    icon: '🔌',
+    description: 'Hardware integration & control',
+    skills: ['Jetson Orin Nano', 'Raspberry Pi', 'Arduino', 'STM32', 'GPIO', 'I2C', 'SPI', 'UART']
+  },
+  {
+    title: 'Programming',
+    icon: '💻',
+    description: 'Software development',
+    skills: ['Python', 'C++', 'MATLAB', 'Bash', 'Git', 'Linux', 'Docker']
+  },
+  {
+    title: 'Machine Learning',
+    icon: '🧠',
+    description: 'Data science & AI',
+    skills: ['Scikit-learn', 'Random Forest', 'Pandas', 'NumPy', 'Data Analysis', 'Time Series']
+  },
+  {
+    title: 'CAD & Simulation',
+    icon: '📐',
+    description: 'Design & virtual testing',
+    skills: ['SolidWorks', 'Isaac Sim', 'Gazebo', 'URDF', 'RViz', 'Fusion 360']
+  },
+  {
+    title: 'Sensors & Hardware',
+    icon: '📡',
+    description: 'Perception & localization',
+    skills: ['LiDAR', 'Event Cameras', 'UWB (Pozyx)', 'GPS/RTK', 'IMU', 'Depth Cameras']
+  }
+];
+---
+
+<section id="skills" class="section-padding bg-slate-900/30">
+  <div class="section-container">
+    <!-- Section Header -->
+    <div class="text-center mb-12">
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-subtitle">
+        Core competencies developed through academic projects, research at NTNU's 
+        IIR Automation Lab, and hands-on engineering work.
+      </p>
+    </div>
+    
+    <!-- Skills Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillCategories.map((category, index) => (
+        <div 
+          class="card group hover:translate-y-[-4px] transition-all duration-300"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <!-- Category Header -->
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-3xl" role="img" aria-hidden="true">
+              {category.icon}
+            </span>
+            <div>
+              <h3 class="font-bold text-white group-hover:text-primary-400 transition-colors">
+                {category.title}
+              </h3>
+              <p class="text-xs text-slate-500">
+                {category.description}
+              </p>
+            </div>
+          </div>
+          
+          <!-- Skills List -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            {category.skills.map(skill => (
+              <span class="tech-badge text-[11px]">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="mt-12 text-center">
+      <p class="text-sm text-slate-500">
+        Currently expanding knowledge in: 
+        <span class="text-primary-400">Computer Vision</span>, 
+        <span class="text-primary-400">Reinforcement Learning</span>, and 
+        <span class="text-primary-400">Multi-Robot Systems</span>
+      </p>
+    </div>
+  </div>
+</section>

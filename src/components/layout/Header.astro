@@ -1,0 +1,159 @@
+---
+/**
+ * Header.astro
+ * Main navigation header with responsive mobile menu
+ */
+
+// Navigation links
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+];
+
+// Get current path for active link highlighting
+const currentPath = Astro.url.pathname;
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
+  <nav class="section-container">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo/Name -->
+      <a 
+        href="/" 
+        class="font-mono font-bold text-lg hover:text-primary-400 transition-colors"
+      >
+        <span class="text-primary-400">&lt;</span>
+        EA
+        <span class="text-primary-400">/&gt;</span>
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class:list={[
+                'text-sm font-medium transition-colors hover:text-primary-400',
+                currentPath === link.href 
+                  ? 'text-primary-400' 
+                  : 'text-slate-300'
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        
+        <!-- CV Download Button -->
+        <li>
+          <a
+            href="/documents/Cv.pdf"
+            download
+            class="px-4 py-2 text-sm font-medium border border-primary-500
+                   text-primary-400 rounded-lg hover:bg-primary-500/10
+                   transition-colors"
+          >
+            Download CV
+          </a>
+        </li>
+      </ul>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-btn"
+        class="md:hidden p-2 text-slate-300 hover:text-primary-400 transition-colors"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg 
+          id="menu-icon" 
+          class="w-6 h-6" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+        <svg 
+          id="close-icon" 
+          class="w-6 h-6 hidden" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div 
+      id="mobile-menu" 
+      class="md:hidden hidden pb-4 border-t border-slate-800 mt-4"
+    >
+      <ul class="flex flex-col gap-4 pt-4">
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.href}
+              class:list={[
+                'block py-2 text-sm font-medium transition-colors hover:text-primary-400',
+                currentPath === link.href 
+                  ? 'text-primary-400' 
+                  : 'text-slate-300'
+              ]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li class="pt-2">
+          <a
+            href="/documents/Cv.pdf"
+            download
+            class="inline-block px-4 py-2 text-sm font-medium border border-primary-500
+                   text-primary-400 rounded-lg hover:bg-primary-500/10
+                   transition-colors"
+          >
+            Download CV
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer to prevent content from going under fixed header -->
+<div class="h-16"></div>
+
+<script>
+  // Mobile menu toggle functionality
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  
+  if (mobileMenuBtn && mobileMenu && menuIcon && closeIcon) {
+    mobileMenuBtn.addEventListener('click', () => {
+      const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
+      
+      mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+  }
+</script>

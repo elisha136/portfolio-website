@@ -1,0 +1,154 @@
+---
+/**
+ * [slug].astro
+ * Dynamic project detail pages
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { projectsData, projectSlugs } from '../../data/projects';
+
+export function getStaticPaths() {
+  return projectSlugs.map(slug => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const project = projectsData[slug as string];
+
+if (!project) {
+  return Astro.redirect('/projects');
+}
+
+const statusColors: Record<string, { bg: string; text: string; label: string }> = {
+  completed: { bg: 'bg-green-500/10', text: 'text-green-400', label: 'Completed' },
+  ongoing: { bg: 'bg-amber-500/10', text: 'text-amber-400', label: 'Ongoing' },
+  planned: { bg: 'bg-slate-500/10', text: 'text-slate-400', label: 'Planned' }
+};
+const status = statusColors[project.status];
+---
+
+<BaseLayout title={project.title} description={project.description}>
+  <article class="section-padding pt-24">
+    <div class="section-container">
+      <div class="max-w-4xl mx-auto">
+        <!-- Back Link -->
+        <a href="/projects" class="inline-flex items-center gap-2 text-slate-400 hover:text-primary-400 mb-8 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          </svg>
+          Back to Projects
+        </a>
+
+        <!-- Header -->
+        <header class="mb-12">
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="tech-badge">{project.category}</span>
+            <span class={`px-3 py-1 text-xs font-medium rounded-full ${status.bg} ${status.text}`}>
+              {status.label}
+            </span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">{project.title}</h1>
+          <p class="text-xl text-slate-400">{project.description}</p>
+        </header>
+
+        <!-- Project Meta -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+          <div class="card">
+            <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Duration</p>
+            <p class="text-slate-200 font-medium">{project.duration}</p>
+          </div>
+          <div class="card">
+            <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Role</p>
+            <p class="text-slate-200 font-medium">{project.role}</p>
+          </div>
+          <div class="card">
+            <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Institution</p>
+            <p class="text-slate-200 font-medium">{project.institution}</p>
+          </div>
+          <div class="card">
+            <p class="text-xs text-slate-500 uppercase tracking-wider mb-1">Status</p>
+            <p class={`font-medium ${status.text}`}>{status.label}</p>
+          </div>
+        </div>
+
+        <!-- Technologies -->
+        <div class="mb-12">
+          <h2 class="text-xl font-bold mb-4">Technologies Used</h2>
+          <div class="flex flex-wrap gap-2">
+            {project.technologies.map((tech: string) => (
+              <span class="tech-badge">{tech}</span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Overview -->
+        <div class="mb-12">
+          <h2 class="text-xl font-bold mb-4">Overview</h2>
+          <p class="text-slate-300 leading-relaxed">{project.overview}</p>
+        </div>
+
+        <!-- Problem Statement -->
+        <div class="mb-12">
+          <h2 class="text-xl font-bold mb-4">Problem Statement</h2>
+          <p class="text-slate-300 leading-relaxed">{project.problemStatement}</p>
+        </div>
+
+        <!-- Challenges & Solutions -->
+        {project.challenges && project.challenges.length > 0 && (
+          <div class="mb-12">
+            <h2 class="text-xl font-bold mb-4">Challenges & Solutions</h2>
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead>
+                  <tr>
+                    <th>Challenge</th>
+                    <th>Solution</th>
+                    <th>Outcome</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {project.challenges.map((item: any) => (
+                    <tr>
+                      <td>{item.challenge}</td>
+                      <td>{item.solution}</td>
+                      <td>{item.outcome}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        <!-- Progress -->
+        {project.progress && project.progress.length > 0 && (
+          <div class="mb-12">
+            <h2 class="text-xl font-bold mb-4">Progress</h2>
+            <div class="space-y-2">
+              {project.progress.map((item: any) => (
+                <div class="flex items-center gap-3 p-3 bg-slate-900/50 rounded-lg">
+                  <span class={`w-5 h-5 rounded flex items-center justify-center text-sm
+                    ${item.completed ? 'bg-green-500/20 text-green-400' : 'bg-slate-700 text-slate-400'}`}>
+                    {item.completed ? '✓' : '○'}
+                  </span>
+                  <span class={item.completed ? 'text-slate-300' : 'text-slate-400'}>
+                    {item.task}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Navigation -->
+        <div class="pt-8 border-t border-slate-800">
+          <a href="/projects" class="btn-secondary">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+            All Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+

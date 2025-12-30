@@ -1,0 +1,135 @@
+---
+title: "Underwater Sampling Container - Automated Manufacturing"
+description: "Modular underwater sampling container system for ROV-based marine research with 3D printing and robotic assembly"
+category: "Mechatronics"
+status: "completed"
+duration: "Fall 2024"
+role: "Team Member"
+institution: "NTNU"
+image: "/images/projects/underwater-container-thumb.jpg"
+technologies: ["3D Printing", "CAD Design", "Collaborative Robots", "Industry 4.0", "DFAA", "Lean Manufacturing", "PETG"]
+featured: false
+---
+
+## Overview
+
+This MMA4002 Design for Automated Manufacturing group project developed a 3D-printed underwater sampling container system for ROV-based marine research. The containers are designed to collect seabed sediments, water samples, minerals, and marine organisms at various ocean depths.
+
+The project applied Industry 4.0/5.0 principles, Design for Automated Assembly (DFAA), Lean Manufacturing concepts, and Product Architecture strategies.
+
+## Problem Statement
+
+Traditional underwater sampling containers lack customization and are expensive to manufacture. Our solution offers:
+
+- **Scalability** - Multiple sizes for different sampling needs
+- **Modularity** - Interchangeable clips and bracket systems
+- **Automation** - Robot-friendly assembly design
+- **Cost-effectiveness** - 3D printed components
+
+## Design Concept
+
+![Underwater sampling concept](/images/projects/underwater-concept.jpg)
+
+The system consists of:
+- **Containers** - Three sizes (small, medium, large) with varying wall thickness for depth rating
+- **Lid Mechanism** - Twist-open design with integrated sealing
+- **Clip Variants** - Magnet, twist, and slide mechanisms
+- **Universal Bracket** - Mounts to ROV or diving equipment
+
+## Technical Specifications
+
+### Material Selection
+
+| Material | Properties | Use Case |
+|----------|-----------|----------|
+| PETG | Water resistant, durable, easy to print | Container bodies |
+| TPU | Flexible, watertight | Sealing gaskets |
+
+### Pressure Calculations
+
+Wall thickness calculated using thin-wall pressure vessel formula:
+
+$$t = \frac{P \cdot D}{2 \cdot S \cdot E}$$
+
+Where:
+- P = Hydrostatic pressure at depth
+- D = Container diameter
+- S = Material tensile strength (PETG: ~50 MPa)
+- E = Safety factor
+
+### Product Architecture
+
+Implemented **Slot Architecture** allowing:
+- Three container sizes sharing common clip interface
+- Three clip variants (magnet, twist, slide)
+- Universal bracket fits all containers
+
+## DFAA Evaluation
+
+Design for Automated Assembly principles applied:
+
+| Principle | Implementation |
+|-----------|---------------|
+| Reduce parts | Minimized to essential components |
+| Base object | Bracket serves as assembly base |
+| Assembly directions | Top-down Z-axis assembly |
+| Self-aligning features | Chamfers and guides for robot grippers |
+| Unique orientation | Asymmetric features prevent misassembly |
+
+## Manufacturing Workflow
+
+1. **Design Phase** - CAD modeling with customer specifications
+2. **Material Selection** - Based on depth requirements
+3. **3D Printing** - Automated FDM printing with PETG
+4. **Quality Control** - Dimensional inspection
+5. **Robot Assembly** - Collaborative robot assembles components
+6. **Final Inspection** - Seal integrity testing
+
+## Collaborative Robot Assembly
+
+The assembly process uses collaborative robots (cobots) at ManuLab:
+
+<video controls width="100%">
+  <source src="/videos/underwater-container-assembly.mp4" type="video/mp4" />
+  Your browser does not support video playback.
+</video>
+
+Assembly sequence:
+1. Pick bracket from feeder
+2. Attach selected clip variant
+3. Install container body
+4. Quality verification
+
+## Industry 4.0/5.0 Implementation
+
+### Industry 4.0 Technologies Used
+- **Additive Manufacturing** - 3D printing for customized production
+- **Simulation** - CAD analysis before production
+- **Autonomous Robots** - Cobot assembly
+
+### Industry 5.0 Principles
+- **Human-centricity** - Design considers diver/operator needs
+- **Sustainability** - Minimal material waste, recyclable PETG
+- **Resilience** - Modular design allows quick adaptation
+
+## Documentation
+
+<a href="/pdfs/MMA4002_Underwater_Container_Report.pdf" target="_blank" class="btn">📄 Design Report (PDF)</a>
+<a href="/pdfs/MMA4002_Reflections.pdf" target="_blank" class="btn">📄 Reflections Document (PDF)</a>
+
+## Team Contribution
+
+This was a group project with three team members. My contributions included:
+- Pressure and wall thickness calculations
+- DFAA analysis and optimization
+- 3D modeling iterations
+- Documentation and technical writing
+
+## Key Learnings
+
+1. **Design for Manufacturing** - Creating products optimized for automated production
+2. **Industry 4.0/5.0** - Practical application of smart manufacturing concepts
+3. **Lean Principles** - Eliminating waste in design and production
+4. **Collaborative Robotics** - Programming cobots for assembly tasks
+5. **Product Architecture** - Modular design for product families
+

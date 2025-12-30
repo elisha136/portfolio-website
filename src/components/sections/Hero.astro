@@ -1,0 +1,144 @@
+---
+/**
+ * Hero.astro
+ * Main hero section on the home page
+ */
+
+// Technologies to display in the hero
+const technologies = ['ROS2', 'Pixhawk', 'Jetson', 'Python', 'ML', 'CAD'];
+---
+
+<section class="min-h-[calc(100vh-4rem)] flex items-center section-container relative overflow-hidden">
+  <!-- Background gradient effect -->
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary-400/5 rounded-full blur-3xl"></div>
+  </div>
+  
+  <div class="grid lg:grid-cols-2 gap-12 items-center py-16 lg:py-20 w-full">
+    <!-- Text Content -->
+    <div class="order-2 lg:order-1 animate-fade-in-up">
+      <!-- Pre-title -->
+      <p class="text-primary-400 font-mono text-sm mb-4 tracking-wider uppercase">
+        MSc Mechatronics & Automation · NTNU Ålesund
+      </p>
+      
+      <!-- Name -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+        <span class="text-white">Elisha Adiburo</span>
+        <span class="text-primary-400"> Adimalara</span>
+      </h1>
+      
+      <!-- Title -->
+      <p class="text-xl sm:text-2xl text-slate-300 mb-4 font-medium">
+        Robotics & Intelligent Systems Engineer
+      </p>
+      
+      <!-- Description -->
+      <p class="text-slate-400 mb-8 max-w-lg leading-relaxed">
+        Building autonomous systems at NTNU's IIR Automation Lab. Specializing in 
+        UAV development, embedded systems integration, and machine learning for 
+        maritime applications. Expected graduation: May 2026.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mb-12">
+        <a href="/projects" class="btn-primary group">
+          View Projects
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+        <a
+          href="/documents/Cv.pdf"
+          class="btn-secondary"
+          download
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+          </svg>
+          Download CV
+        </a>
+        <a href="/contact" class="btn-secondary">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+          Contact
+        </a>
+      </div>
+      
+      <!-- Tech Stack Preview -->
+      <div class="space-y-2">
+        <p class="text-xs text-slate-500 font-mono uppercase tracking-wider">
+          Core Technologies
+        </p>
+        <div class="flex flex-wrap gap-2">
+          {technologies.map((tech, index) => (
+            <span 
+              class="tech-badge animate-fade-in"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Profile Image / Visual Element -->
+    <div class="order-1 lg:order-2 flex justify-center animate-fade-in">
+      <div class="relative">
+        <!-- Glow effect behind image -->
+        <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-3xl scale-110"></div>
+        
+        <!-- Profile image container -->
+        <div class="relative">
+          <!-- Decorative ring -->
+          <div class="absolute -inset-4 border border-primary-500/30 rounded-full animate-pulse-slow"></div>
+          
+          <!-- Image placeholder - replace src with your actual photo -->
+          <img 
+            src="/images/profile/headshot.jpg"
+            alt="Elisha Adiburo Adimalara - Mechatronics Engineer"
+            class="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 
+                   rounded-full object-cover
+                   border-2 border-primary-500/50 shadow-2xl shadow-primary-500/10"
+            loading="eager"
+          />
+          
+          <!-- Status indicator -->
+          <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 
+                      bg-slate-900/90 backdrop-blur px-3 py-1.5 rounded-full
+                      border border-slate-700 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+            <span class="text-xs font-medium text-slate-300">Open to work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block animate-bounce">
+    <svg class="w-6 h-6 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+</style>
