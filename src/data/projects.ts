@@ -110,8 +110,8 @@ export const projectsData: Record<string, Project> = {
     description: 'Configuration and integration of UWB positioning for GPS-denied navigation.',
     image: '/images/projects/pozyx-uwb-thumb.jpg',
     category: 'Positioning Systems',
-    status: 'ongoing',
-    duration: 'October 2024 - Present',
+    status: 'completed',
+    duration: 'October 2024 - December 2024',
     role: 'Developer',
     institution: 'NTNU IIR Automation Lab',
     technologies: ['Pozyx', 'Python', 'MQTT', 'UWB', 'Pixhawk'],
@@ -119,14 +119,14 @@ export const projectsData: Record<string, Project> = {
     problemStatement: 'GPS signals are unavailable or unreliable indoors and in many maritime environments. UWB technology provides centimeter-level accuracy for positioning in these GPS-denied scenarios.',
     challenges: [
       { challenge: 'Anchor Placement Optimization', solution: 'Geometric analysis and iterative testing', outcome: 'Optimal coverage with 4 anchors' },
-      { challenge: 'Pixhawk Integration', solution: 'Custom MAVLink position messages', outcome: 'In progress' }
+      { challenge: 'Pixhawk Integration', solution: 'Custom MAVLink position messages', outcome: 'Successfully integrated with flight controller' }
     ],
     progress: [
       { task: 'Anchor hardware setup', completed: true },
       { task: 'Tag configuration', completed: true },
       { task: 'Position calculation', completed: true },
-      { task: 'Pixhawk integration', completed: false },
-      { task: 'Flight testing', completed: false }
+      { task: 'Pixhawk integration', completed: true },
+      { task: 'Indoor positioning validation', completed: true }
     ],
     featured: false
   },
