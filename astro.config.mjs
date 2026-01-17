@@ -5,8 +5,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Replace with your actual domain when you have one
-  site: 'https://elisha-antwi.dev',
+  site: 'https://www.elishadiburo.com',
   
   integrations: [
     tailwind(),
